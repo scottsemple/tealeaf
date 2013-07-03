@@ -27,7 +27,7 @@ array.uniq!
 array = [1, 2, 3]
 
 hash1_8 = {:a => 1, :b => 2}
-hash1_9 = {a: 1, b: 2. c:3}
+hash1_9 = {a: 1, b: 2, c: 3}
 
 hash1_9[:b]
 
