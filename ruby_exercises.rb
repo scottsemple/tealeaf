@@ -20,3 +20,20 @@ array.pop
 array.push 3
 array.uniq!
 
+# Hash versus array:
+# An array is an ordered, indexed list, starting with 0 for the first position.
+# A hash is a collection of key:value pairs, indexed with the key value.
+
+array = [1, 2, 3]
+
+hash1_8 = {:a => 1, :b => 2}
+hash1_9 = {a: 1, b: 2. c:3}
+
+hash1_9[:b]
+
+hash1_9[:d] = 4
+
+hash1_9.delete_if {|k, v| v < 3.5}
+
+# Yes, hash values can be arrays.
+# Yes, you can have an array of hashes.
