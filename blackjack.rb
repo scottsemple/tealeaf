@@ -46,7 +46,7 @@ while player_hand < 21
     say "Your new card is #{new_card}."
     player_hand = player_hand + new_card
       if player_hand > 21
-        say 'You bust. Dealer wins.'
+        say 'You bust.'
         break
       else
         say "Your hand is now worth #{player_hand}."
@@ -56,3 +56,33 @@ while player_hand < 21
   end
 end
 
+if player_hand == 21
+  say 'Congratulations.'
+end
+
+dealer_first = deal
+dealer_second = deal
+dealer_hand = dealer_first + dealer_second
+
+say "The dealer has #{dealer_first} and #{dealer_second} for #{dealer_hand}."
+
+while dealer_hand < 21 && player_hand <= 21
+  if dealer_hand <= 16
+    new_card = deal
+    say "The dealer hits and gets a #{new_card}."
+    dealer_hand = dealer_hand + new_card
+    if dealer_hand > 21
+      say "The dealer busts."
+    else
+      say "The dealer has #{dealer_hand}."
+    end
+  else
+    break
+  end
+end
+
+if dealer_hand <= 21 && dealer_hand >= player_hand
+  say 'Dealer wins.'
+else
+  say 'You win!'
+end
