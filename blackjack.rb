@@ -22,13 +22,6 @@ def say (expression)
 end
 
 def deal
-  rand(1..52) % 13
-end
-
-first_card = deal
-second_card = deal
-
-def check_card (card)
   card = rand(1..52) % 13
   if card == 11 || card == 12 || card == 13
     card = 10
@@ -39,8 +32,8 @@ def check_card (card)
   end
 end
 
-first_card = check_card (first_card)
-second_card = check_card (second_card)
+first_card = deal
+second_card = deal
 player_hand = first_card + second_card
 
 say "You have #{first_card} and #{second_card} for a hand of #{player_hand}."
@@ -50,7 +43,6 @@ while player_hand < 21
   response = gets.chomp
   if response.to_i == 1
     new_card = deal
-    new_card = check_card (new_card)
     say "Your new card is #{new_card}."
     player_hand = player_hand + new_card
       if player_hand > 21
