@@ -60,34 +60,33 @@ if player_hand == 21
   say 'Congratulations.'
 end
 
-dealer_first = deal
-dealer_second = deal
-dealer_hand = dealer_first + dealer_second
+if player_hand <= 21
+  
+  dealer_first = deal
+  dealer_second = deal
+  dealer_hand = dealer_first + dealer_second
 
-say "The dealer has #{dealer_first} and #{dealer_second} for #{dealer_hand}."
+  say "The dealer has #{dealer_first} and #{dealer_second} for #{dealer_hand}."
 
-# Why doesn't this stop here if the player busts?
-# What do I need to change about the while statement so that the following
-#    doesn't execute?
-while dealer_hand < 21 && player_hand <= 21
-  if dealer_hand <= 16
-    new_card = deal
-    say "The dealer hits and gets a #{new_card}."
-    dealer_hand = dealer_hand + new_card
-    if dealer_hand > 21
-      say 'The dealer busts.'
+  while dealer_hand < 21
+    if dealer_hand <= 16
+      new_card = deal
+      say "The dealer hits and gets a #{new_card}."
+      dealer_hand = dealer_hand + new_card
+      if dealer_hand > 21
+        say 'The dealer busts.'
+      else
+        say "The dealer has #{dealer_hand}."
+      end
     else
-      say "The dealer has #{dealer_hand}."
+      break
     end
-  else
-    break
   end
-end
 
-# Same problem: What do I need to add to the while statements so busts stop the
-#    program?
-if dealer_hand <= 21 && player_hand <= 21 && dealer_hand >= player_hand
-  say 'Dealer wins.'
-else
-  say 'You win!'
+  if dealer_hand <= 21 && dealer_hand >= player_hand
+    say 'Dealer wins.'
+  else
+    say 'You win!'
+  end
+
 end
