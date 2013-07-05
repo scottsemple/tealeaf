@@ -26,7 +26,7 @@ def deal
   if card == 11 || card == 12 || card == 13
     card = 10
   elsif card == 0
-    card = 11 # I'll deal with the || 1 option later.
+    card = 11
   else
     card
   end
@@ -61,6 +61,8 @@ if player_hand == 21
 end
 
 if player_hand <= 21
+
+  say "Now it's the dealer's turn."
   
   dealer_first = deal
   dealer_second = deal
