@@ -2,21 +2,6 @@
 
 # BLACKJACK
 
-# PROCESS:
-# => Shuffle the cards;
-# => Deal the cards to the player and the dealer;
-# => Total the cards for each hand;
-# =>    Watch for face cards that are 10 and aces which can be 1 or 11;
-# => Prompt the user if they would like a new card;
-# =>    Total the new hand and prompt again until they bust or decline a card;
-# => Automate the process for the dealer to get new cards based on rules:
-# =>    Hit on 16, hold on greater than 16.
-# => Compare hands and decide on the winner.
-# =>    Dealer wins on 21, otherwise compare the two hands to determine the
-# =>    winner.
-
-require 'pry'
-
 def say (expression)
   puts "=> #{expression}"
 end
