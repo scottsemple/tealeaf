@@ -1,4 +1,4 @@
-require 'pry'
+# Encoding UTF-8
 
 class Card
   attr_accessor :value, :suit
@@ -34,7 +34,7 @@ end
 
 module Hand
   def show_hand
-    puts ""
+    puts ''
     puts "---- #{name}'s Hand ----"
     cards.each do |card|
       puts "#{card}"
@@ -94,7 +94,7 @@ class Dealer
   attr_accessor :name, :cards
 
   def initialize
-    @name = "Dealer"
+    @name = 'Dealer'
     @cards = []
   end
 
@@ -105,12 +105,12 @@ class Blackjack
 
   def initialize
     @deck = Deck.new
-    @player = Player.new("")
+    @player = Player.new('')
     @dealer = Dealer.new
   end
 
   def get_player_name
-    puts ""
+    puts ''
     puts "Let's play blackjack!"
     puts "What's your name?"
     player.name = gets.chomp
@@ -118,21 +118,21 @@ class Blackjack
 
   def deal_cards
     player.add_card(deck.deal_one)
+    dealer.add_card(deck.deal_one)
     player.add_card(deck.deal_one)
+    dealer.add_card(deck.deal_one)
     player.show_hand
-    dealer.add_card(deck.deal_one)
-    dealer.add_card(deck.deal_one)
     dealer.show_hand
   end
 
   def player_turn
     while player.is_busted? != true
-      puts ""
-      puts "Hit or stay? (Type '1' for a new card or 'Enter' to stay.)"
+      puts ''
+      puts 'Hit or stay? (Type "1" for a new card or "Enter" to stay.)'
       response = gets.chomp
       if response.to_i == 1
         player.add_card(deck.deal_one)
-        puts ""
+        puts ''
         puts "Your new card is a #{player.cards[-1].to_s}."
         player.show_hand
           if player.is_busted? == true
@@ -149,7 +149,7 @@ class Blackjack
     while dealer.is_busted? != true
       if dealer.total_hand <= 16
       dealer.add_card(deck.deal_one)
-      puts ""
+      puts ''
       puts "The dealer hits and gets a #{dealer.cards[-1].to_s}."
       dealer.show_hand
         if dealer.is_busted? == true
@@ -162,7 +162,7 @@ class Blackjack
   end
 
   def who_won?
-    puts ""
+    puts ''
     if dealer.is_busted? != true && dealer.total_hand >= player.total_hand
       puts 'Dealer wins.'
     else
@@ -171,11 +171,11 @@ class Blackjack
   end
 
   def play_again?
-    puts ""
-    puts "Would you like to play again? (Type 'y' for a new card " +
-         "or 'Enter' to quit.)"
+    puts ''
+    puts 'Would you like to play again? (Type "y" for a new card ' +
+         'or "Enter" to quit.)'
     response = gets.chomp
-    if response == "y"
+    if response == 'y'
       game = Blackjack.new
       game.start
     else
