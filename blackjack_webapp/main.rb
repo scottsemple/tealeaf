@@ -31,10 +31,6 @@ helpers do
   end
 end
 
-helpers do
-
-end
-
 get '/' do
   if session[:player_name]
     redirect "/game"
@@ -79,7 +75,28 @@ post "/game/player/hit" do
   erb :game
 end
 
-post "/game/player/stay" do
-  @success = "You have chosen to stay."
+post "/game/dealer" do
+  while total_hand(session[:dealer_hand]) < 21
+    if total_hand(session[:dealer_hand]) <= 16
+      session[:dealer_hand] << session[:deck].pop
+    else
+      break
+    end
+  end
+
+  erb :game
+
+  redirect '/game/winner'
+end
+
+get "/game/winner" do
+  if total_hand(session[:dealer_hand]) > 21
+    @success = 'The dealer busts. You win!'
+  elsif total_hand(session[:dealer_hand]) >= total_hand(session[:player_hand])
+    @error = 'Sorry... Dealer wins.'
+  else
+    @success = 'Congratulations! You win!'
+  end
+
   erb :game
 end
