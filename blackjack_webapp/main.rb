@@ -31,6 +31,9 @@ helpers do
   end
 end
 
+helpers do
+
+end
 
 get '/' do
   if session[:player_name]

@@ -3,18 +3,18 @@
 <p>Welcome, <%= session[:player_name] %>.</p>
 
 <p>Dealer's Hand:</p>
-<ul>
+<ul class='inline'>
   <% session[:dealer_hand].each do |card| %>
-    <li><%= card.to_s %></li>
+    <li><img class='img-polaroid' src="/images/cards/<%= "#{card[1]}_#{card[0]}.jpg" %>" /></li>
   <% end %>
 </ul>
 
 <br />
 
 <p>Your Hand:</p>
-<ul>
+<ul class='inline'>
   <% session[:player_hand].each do |card| %>
-    <li><%= card.to_s %></li>
+    <li><img class='img-polaroid' src="/images/cards/<%= "#{card[1]}_#{card[0]}.jpg" %>" /></li>
   <% end %>
 </ul>
 
