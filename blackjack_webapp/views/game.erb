@@ -1,35 +1,46 @@
-<h1>Let's play Blackjack.</h1>
+<p class="pull-right">Welcome, <%= session[:player_name] %></p>
 
-<p>Welcome, <%= session[:player_name] %>.</p>
+<h2>Let's play Blackjack.</h2>
 
-<p>Dealer's Hand:</p>
-<ul class='inline'>
-  <% session[:dealer_hand].each do |card| %>
-    <li><img class='img-polaroid' src="/images/cards/<%= "#{card[1]}_#{card[0]}.jpg" %>" /></li>
+<div class="well">
+  <p>Dealer's Hand:</p>
+    <% session[:dealer_hand].each_with_index do |card, i| %>
+      <% if session[:turn] == session[:player_name] && i == 0 %>
+        <img class="img-polaroid" src="/images/cards/cover.jpg" />
+      <%  else %>
+        <%= card_image(card) %>
+      <% end %>
+    <% end %>
+
+  <% if @show_dealer_hit_button %>
+    <p>
+      <strong>Dealer has <%= total_hand(session[:dealer_hand]) %> and will hit.</strong>
+    </p>
+    <form action="/game/dealer/hit" method="post">
+      <input type="submit" class="btn btn-primary" value="Click to see next card &rarr;" />
+    </form>
   <% end %>
-</ul>
+</div>
 
 <br />
 
-<p>Your Hand:</p>
-<ul class='inline'>
-  <% session[:player_hand].each do |card| %>
-    <li><img class='img-polaroid' src="/images/cards/<%= "#{card[1]}_#{card[0]}.jpg" %>" /></li>
-  <% end %>
-</ul>
+<div class="well">
+  <p>Your Hand:</p>
+    <% session[:player_hand].each do |card| %>
+      <%= card_image(card) %>
+    <% end %>
+</div>
 
-<p>You have <%= total_hand(session[:player_hand]) %>.
+<% if @show_hit_or_stay_buttons %>
+  <p>You have $<%= session[:bankroll] %> and you bet $<%= session[:bet] %> this round. Your score is <%= total_hand(session[:player_hand]) %>.</p>
 
-<% if @error %>
-  <p>Would you like to play again? (Not built yet...)</p>
-<% else %>
-  <p>Would you like to hit or stay?</p>
+  <p><strong>Would you like to hit or stay?</strong></p>
 
-  <form action="/game/player/hit" method="post">
-    <input type="submit" class="btn" value="Hit" />
+  <form id="hit_form" action="/game/player/hit" method="post">
+    <input type="submit" class="btn btn-success" value="Hit" />
   </form>
-  <form action="/game/dealer" method="post">
-    <input type="submit" class="btn" value="Stay" />
+  <form id="stay_form" action="/game/dealer" method="get">
+    <input type="submit" class="btn btn-warning" value="Stay" />
   </form>
 <% end %>
 </p>
